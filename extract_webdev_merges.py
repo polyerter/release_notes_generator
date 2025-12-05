@@ -68,6 +68,8 @@ def main():
 
     args = parser.parse_args()
 
+    output = args.output or 'merges.txt'
+
     if args.from_file:
         with open(args.from_file, 'r', encoding='utf-8') as f:
             lines = f.readlines()
@@ -79,10 +81,10 @@ def main():
 
     output_text = "\n".join(lines)
 
-    if args.output:
-        with open(args.output, 'w', encoding='utf-8') as f:
+    if output:
+        with open(output, 'w', encoding='utf-8') as f:
             f.write(output_text)
-        print(f"✅ Найдено {len(lines)} merge-коммитов. Сохранено в {args.output}", file=sys.stderr)
+        print(f"✅ Найдено {len(lines)} merge-коммитов. Сохранено в {output}", file=sys.stderr)
     else:
         print(f"\nℹ️  Найдено {len(lines)} merge-коммитов.", file=sys.stderr)
 
